@@ -1,12 +1,9 @@
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 
 public class Client {
@@ -17,7 +14,7 @@ public class Client {
             	StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
             	Metadata metaData = new MetadataSources(standardRegistry).getMetadataBuilder().build();
             	sessionFactory= metaData.getSessionFactoryBuilder().build();
-            	System.out.println("returnsed session factory");
+            	//System.out.println("returnsed session factory");
             	return sessionFactory;
             	
             }catch (Exception e) {

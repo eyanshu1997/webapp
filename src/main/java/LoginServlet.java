@@ -2,12 +2,12 @@
 
 import java.io.IOException;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+	import jakarta.servlet.RequestDispatcher;
+	import jakarta.servlet.ServletException;
+	import jakarta.servlet.http.HttpServlet;
+	import jakarta.servlet.http.HttpServletRequest;
+	import jakarta.servlet.http.HttpServletResponse;
+	import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginServlet
@@ -29,7 +29,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        response.sendRedirect("login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher.forward(request, response);
 	}
 
 	/**
@@ -38,7 +39,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-            if(authenticate(request, response)==0)
+			int typ=authenticate(request, response);
+            if(typ==0)
             {
             	response.setContentType("text/html");
             	response.getWriter().println("login failed.<br><br><br><a href ='login.jsp'>login again</a>");
@@ -48,8 +50,9 @@ public class LoginServlet extends HttpServlet {
             	 HttpSession session=request.getSession();  
             	 String username = request.getParameter("username");
                  session.setAttribute("Username",username);  
-            	RequestDispatcher dispatcher = request.getRequestDispatcher("login-success.jsp");
-            	dispatcher.forward(request, response);
+                 session.setAttribute("type",typ);
+                 response.sendRedirect("home");
+            	
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block

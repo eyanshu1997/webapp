@@ -3,14 +3,9 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-<class name="User" table="User">
+<class name="Dept" table="Dept">
 <id name="id">
 </id>
 <property name="Name"></property>
-<property name="password"></property>
-<property name="type"></property>
-<property name="Dept"></property>
-<property name="LName"></property>
-<property name="DOB"></property>
 </class>
 </hibernate-mapping>

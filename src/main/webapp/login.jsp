@@ -13,11 +13,11 @@
 <body>
 <% 
  try {
-            if (request.getSession(false) == null || session.getAttribute("Username") == null || session.getAttribute("Username").equals(""))
+            if (session == null || session.getAttribute("Username") == null || session.getAttribute("Username").equals("")|| session.getAttribute("type") == null || session.getAttribute("type").equals(""))
             {
 			
             } else {
-            	response.sendRedirect("login-success.jsp");
+            	response.sendRedirect("home");
             }
  }catch(Exception e)
 {

@@ -8,7 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.internal.build.AllowSysOut;
 
-public class testdatabase {
+public class testdatabase2 {
 	static SessionFactory sessionFactory;
 	public static void main(String[] args) {
         if (sessionFactory == null) {
@@ -17,47 +17,12 @@ public class testdatabase {
             	Metadata metaData = new MetadataSources(standardRegistry).getMetadataBuilder().build();
             	sessionFactory= metaData.getSessionFactoryBuilder().build();
             	System.out.println("created session");
-            
-            	
             	Session s = sessionFactory.openSession();
             	Transaction t=s.beginTransaction();
-            	
-            	User s1=new User ();
-            	//s1.setId(2);
-            	s1.setName("eya");
-            	s1.setPassword("123");
-            	s1.setType(1);
-            	s.save(s1);
-            	t.commit();
-            	s.close();
-               	s = sessionFactory.openSession();
-            	t=s.beginTransaction();
-            	
-            	User user = (User) s.createQuery("FROM User U WHERE U.Name = :userName").setParameter("userName", "eya")
-    	                .uniqueResult();
-    	        System.out.println(user);
-    	        
-            	t.commit();
-            	s.close();
+
             	
             	
-            	s = sessionFactory.openSession();
-            	t=s.beginTransaction();
-            	s.createNativeQuery("alter table User Modify id bigint Auto_increment not null").executeUpdate();
-            	//s.save(s1);
-            	t.commit();
-            	s.close();
-            	
-            	s = sessionFactory.openSession();
-            	t=s.beginTransaction();
-            	s.createNativeQuery("alter table Report Modify id bigint Auto_increment not null").executeUpdate();
-            	//s.save(s1);
-            	t.commit();
-            	s.close();
-               
-            	s = sessionFactory.openSession();
-            	t=s.beginTransaction();
-            	s.createNativeQuery("alter table Dept Modify id bigint Auto_increment not null").executeUpdate();
+            	s.createNativeQuery("drop table Comments").executeUpdate();
             	//s.save(s1);
             	t.commit();
             	s.close();
@@ -65,18 +30,30 @@ public class testdatabase {
             	
             	s = sessionFactory.openSession();
             	t=s.beginTransaction();
-            	s.createNativeQuery("alter table Comments Modify id bigint Auto_increment not null").executeUpdate();
+            	s.createNativeQuery("drop table Report").executeUpdate();
             	//s.save(s1);
             	t.commit();
             	s.close();
-            	/*
-//            	 	alter table User Modify id bigint Auto_increment not null;
-  					alter table Dept Modify id bigint Auto_increment not null;
-  					alter table Report Modify id bigint Auto_increment not null;
-  					alter table Comment Modify id bigint Auto_increment not null;
-            	 */
             	
-            
+            	s = sessionFactory.openSession();
+            	t=s.beginTransaction();
+            	s.createNativeQuery("drop table Dept").executeUpdate();
+            	//s.save(s1);
+            	t.commit();
+            	s.close();
+            	
+            	s = sessionFactory.openSession();
+            	t=s.beginTransaction();
+            	s.createNativeQuery("drop table User").executeUpdate();
+            	//s.save(s1);
+            	t.commit();
+            	s.close();
+            	
+            	
+            	s = sessionFactory.openSession();
+            	t=s.beginTransaction();
+     
+            	
             	
             }catch (Exception e) {
                 e.printStackTrace();

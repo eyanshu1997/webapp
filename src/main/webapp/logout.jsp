@@ -15,6 +15,7 @@ try{
     if(request.getSession(false)!=null)
     {
     	session.removeAttribute("Username");
+    	session.removeAttribute("type");
     	session.invalidate();
     	response.sendRedirect("login");
     }

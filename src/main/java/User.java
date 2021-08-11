@@ -12,10 +12,38 @@ import javax.persistence.*;
 public class User implements Serializable {
 
 	@Id
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Basic(optional = false)
+	
+	private long id;
 	private String Name;
+	private String LName;
+	private String DOB;
+	private String Dept;
 	private String Password;
 	private int type;
+	
+	
+	public String getLName() {
+		return LName;
+	}
+	public void setLName(String lName) {
+		LName = lName;
+	}
+	public String getDOB() {
+		return DOB;
+	}
+	public void setDOB(String dOB) {
+		DOB = dOB;
+	}
+	public String getDept() {
+		return Dept;
+	}
+	public void setDept(String dept) {
+		Dept = dept;
+	}
+
+
 	public int getType() {
 		return type;
 	}
@@ -34,11 +62,11 @@ public class User implements Serializable {
 	public User() {
 		super();
 	}   
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}   
 	public String getName() {
