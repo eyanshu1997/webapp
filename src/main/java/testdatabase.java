@@ -21,13 +21,13 @@ public class testdatabase {
             	
             	Session s = sessionFactory.openSession();
             	Transaction t=s.beginTransaction();
-            	User user = (User) s.createQuery("FROM User U WHERE U.Name = :userName").setParameter("userName", "eya")
+            	User user = (User) s.createQuery("FROM User U WHERE U.Name = :userName").setParameter("userName", "admin")
     	                .uniqueResult();
     	        System.out.println(user);
     	        
             	t.commit();
             	s.close();
-            	if(user!=null)
+            	if(user==null)
             	{
 	               	s = sessionFactory.openSession();
 	            	t=s.beginTransaction();
