@@ -50,25 +50,31 @@ public class viewcom extends HttpServlet {
      	t.commit();
      	s.close();
      	response.setContentType("text/html");
-     	String tab2="<!DOCTYPE html>"
-				+ "<html>"
-				+ "<head>"
-				+ "<meta charset=\"UTF-8\"><link rel=\"stylesheet\"\n"
-				+ " href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"\n"
-				+ " integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\"\n"
-				+ " crossorigin=\"anonymous\">"
-				+ "<title>Insert title here</title>"
-				+ "</head>"
-				+ "<body>"+"<table class='table table-striped'><thead><h4><center>Comment details</center><h4><tr><th>Id</th><th>Rid</th><th>Comment</th><th>Employee</th></tr></thead><tbody>";
-		
-     	for (Comments c: coms)
-     	{
-     			tab2+="<tr><td>"+c.getId()+"</td><td>"+c.getRid()+"</td><td>"+c.getContent()+"</td><td>"+c.getEmp()+"</td></tr>";
-     			
-     	}
+     	String tab2="";
      	if(coms.size()==0)
-     		tab2+="no comments";
-     	tab2+="</tbody></table></body></html>";
+     		tab2+="<html><body><center><h5>No Comments</h5><br><a href='home'>go back </a></center></body></html>";
+     	else
+     	{
+	     	tab2+="<!DOCTYPE html>"
+					+ "<html>"
+					+ "<head>"
+					+ "<meta charset=\"UTF-8\"><link rel=\"stylesheet\"\n"
+					+ " href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"\n"
+					+ " integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\"\n"
+					+ " crossorigin=\"anonymous\">"
+					+ "<title>Insert title here</title>"
+					+ "</head>"
+					+ "<body>"+"<table class='table table-striped'><thead><h4><center>Comment details</center><h4><tr><th>Id</th><th>Rid</th><th>Comment</th><th>Employee</th></tr></thead><tbody>";
+			
+	     	for (Comments c: coms)
+	     	{
+	     			tab2+="<tr><td>"+c.getId()+"</td><td>"+c.getRid()+"</td><td>"+c.getContent()+"</td><td>"+c.getEmp()+"</td></tr>";
+	     			
+	     	}
+	     	
+	     	tab2+="</tbody></table><center><a href='home'>go back </a></center></body></html>";
+	     	
+     	}
      	response.getWriter().println(tab2);
 	}
 

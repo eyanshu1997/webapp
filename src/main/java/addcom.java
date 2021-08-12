@@ -44,7 +44,7 @@ public class addcom extends HttpServlet {
 	        Comments c=new Comments();
 	        c.setContent(content);
 	        c.setDate(date);
-	        c.setEmp(emp);
+	        c.setEmp(Integer.valueOf(emp));
 	        c.setRid(id);
 	        Transaction transaction=null;
 			try (Session session = Client.getSessionFactory().openSession()) {

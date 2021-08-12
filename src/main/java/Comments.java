@@ -15,7 +15,7 @@ public class Comments implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String emp;
+	private int emp;
 	private String content;
 	private String date;
 	private int rid;
@@ -38,11 +38,11 @@ public class Comments implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}   
-	public String getEmp() {
+	public int getEmp() {
 		return this.emp;
 	}
 
-	public void setEmp(String emp) {
+	public void setEmp(int emp) {
 		this.emp = emp;
 	}   
 	public String getContent() {

@@ -42,7 +42,7 @@ public class editemp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
+		int id = Integer.valueOf(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String lname = request.getParameter("lname");
 		String dob = request.getParameter("DOB");
@@ -74,21 +74,21 @@ public class editemp extends HttpServlet {
  		
 		String h="<html><head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.cs\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\"> </head>	<body>";
 		
-		String form="<div class=\"container  col-md-4\" ><form action=\"addemp\" method=\"post\">"
-				+ "   <div class=\"form-group\">"
+		String form="<div class=\"container  col-md-4\" ><form action=\"editempf\" method=\"post\">"
+				+ "   <div class=\"form-group\"><input type='hidden' name='id' value="+id+">"
 				+ "    <label for=\"uname\">Name:</label> <input type=\"text\""
-				+ "     class=\"form-control\" id=\"username\" placeholder=\""+name
-				+ "\"     name=\"username\" required>"
+				+ "     class=\"form-control\" id=\"name\" placeholder=\""+name
+				+ "\"     name=\"name\" required>"
 				+ "    <label for=\"uname\">Lastname:</label> <input type=\"text\""
-				+ "     class=\"form-control\" id=\"Lastname\" placeholder=\""+lname
-				+ "\"     name=\"Lastname\" required>"
+				+ "     class=\"form-control\" id=\"lname\" placeholder=\""+lname
+				+ "\"     name=\"lname\" required>"
 				+ "  <input type='hidden' id='type' value='2' >"
 				+ "    <label for=\"uname\">Dept :</label> <select for=\"uname\" id=\"dept\" name=\"dept\"required>"
 				+ "##replace with options##"
 				+ "</select>"
 				+ "    <label for=\"uname\">DOB:</label> <input type=\"date\""
-				+ "     class=\"form-control\" id=\"DOB\" placeholder='"+dob.strip()+"'value='"+dob.strip()
-				+ "' name=\"DOB\" max=\"#maxdate#\" required>\n"
+				+ "     class=\"form-control\" id=\"dob\" placeholder='"+dob.strip()+"'value='"+dob.strip()
+				+ "' name=\"dob\" max=\"#maxdate#\" required>\n"
 				+ "     </div>"
 				+ "   <button type=\"submit\" class=\"btn btn-primary\">Submit</button>"
 				+ "  </form></div>";

@@ -15,11 +15,17 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private Userdao loginDao;
+    private static boolean firstrun=true;
 
     /**
      * Default constructor. 
      */
     public LoginServlet() {
+    	if(firstrun==true)
+    	{
+    		testdatabase.main(null);
+    		firstrun=false;
+    	}
         loginDao = new Userdao();
         // TODO Auto-generated constructor stub
     }

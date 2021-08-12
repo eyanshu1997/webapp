@@ -113,7 +113,7 @@ public class home extends HttpServlet {
                 			for( Dept a : depts)
                 			{
                 				
-                						tab1+="<tr><td>"+a.getName()+"</td></tr>";
+                						tab1+="<tr><td>"+a.getName()+"</td><td><form action='viewdept' method='post'><input type='hidden' name='id' value='"+a.getName()+"'><input type='submit' placeholder='view' value='view'></form></td></tr>";
   
                 				
                 			}
@@ -179,48 +179,38 @@ public class home extends HttpServlet {
                 							
                 							for(User u:users)
                 							{
+                								if(u.getType()!=2)
+                								{
                 								
                 								//System.out.println("dept val"+a.getDept());
                 								
             
-                								String tmp2=u.getDept();
-                								//System.out.println(u);
-                								if(u.getDept()!=null)
-                								if(tmp2.equals(tmp1))
-                								{
-                									boolean lset=false;
-                									for(Comments c:com)
-                									{
-                										
-                										//System.out.println("checking '"+c.getEmp()+"' '"+u.getName()+"' '"+c.getRid()+"' '"+a.getId()+"'");
-                										//System.out.println((c.getEmp().equals(u.getName())&&(int)c.getRid()==(int)a.getId()));
-                										if(c.getEmp().equals(u.getName())&&(int)c.getRid()==(int)a.getId())
-                										{
-                											lset=true;
-                										}
-                									}
-                									//System.out.println(lset);
-                									if(lset==false)
-                									{
-                										set=false;
-                										
-                									}
+	                								String tmp2=u.getDept();
+	                								//System.out.println(u);
+	                								if(u.getDept()!=null)
+	                								if(tmp2.equals(tmp1))
+	                								{
+	                									boolean lset=false;
+	                									for(Comments c:com)
+	                									{
+	                										
+	                										//System.out.println("checking '"+c.getEmp()+"' '"+u.getName()+"' '"+c.getRid()+"' '"+a.getId()+"'");
+	                										//System.out.println((c.getEmp().equals(u.getName())&&(int)c.getRid()==(int)a.getId()));
+	                										if(c.getEmp()==u.getId()&&(int)c.getRid()==(int)a.getId())
+	                										{
+	                											lset=true;
+	                										}
+	                									}
+	                									//System.out.println(lset);
+	                									if(lset==false)
+	                									{
+	                										set=false;
+	                										
+	                									}
+	                								}
                 								}
                 							}
-                							if(set==true)
-                							{
-                								Session s = Client.getSessionFactory().openSession();
-                		                    	Transaction t=s.beginTransaction();
-                		                    	
-
-                		                    	 s.createQuery("update Report set status=:n where id=:i").setParameter("n", true).setParameter("i", a.getId())
-                		            	                .executeUpdate();
-                		            	        //System.out.println(user);
-                		            	        
-                		                    	t.commit();
-                		                    	s.close();
-                								
-                							}
+                					
                 						}
                 						
                 						tab2+="<tr><td>"+a.getId()+"</td><td>"+a.getType()+"</td><td>"+a.getDes()+"</td><td>"+a.getDate()+"</td><td>"+a.getDept()+"</td><td>"+set+"</td><td><form method='post' action='viewcom'><input type='hidden' id='id' name ='id' value='"+ a.getId()+"'><input type='submit' value='View comments'></form></td></tr>";
@@ -282,7 +272,7 @@ public class home extends HttpServlet {
     						 s= Client.getSessionFactory().openSession();
     		 			t=s.beginTransaction();
     		 			//System.out.println(user.getName()+a.getId());
-    		 			List<Comments> coms = s.createQuery("FROM Comments U WHERE U.rid = :rid and U.emp= :emp ").setParameter("rid",(int)a.getId()).setParameter("emp",user.getName())
+    		 			List<Comments> coms = s.createQuery("FROM Comments U WHERE U.rid = :rid and U.emp= :emp ").setParameter("rid",(int)a.getId()).setParameter("emp",(int)user.getId())
     	    	                .list();
     		 			t.commit();
     		 			
@@ -292,7 +282,7 @@ public class home extends HttpServlet {
     				        if(coms.size()==0)
             				
             						
-            				tab2+="<tr><td>"+a.getId()+"</td><td>"+a.getType()+"</td><td>"+a.getDes()+"</td><td>"+a.getDate()+"</td><td><form method='post' action='comp'><input type='hidden' id='id' name ='id' value='"+ a.getId()+"'><input type='hidden' id='emp' name ='emp' value='"+ session.getAttribute("Username")+"'><input type='submit' value='add comment'></form></td></tr>";
+            				tab2+="<tr><td>"+a.getId()+"</td><td>"+a.getType()+"</td><td>"+a.getDes()+"</td><td>"+a.getDate()+"</td><td><form method='post' action='comp'><input type='hidden' id='id' name ='id' value='"+ a.getId()+"'><input type='hidden' id='emp' name ='emp' value='"+ user.getId()+"'><input type='submit' value='add comment'></form></td></tr>";
     				        else
     				        {
     				        	String conten="";

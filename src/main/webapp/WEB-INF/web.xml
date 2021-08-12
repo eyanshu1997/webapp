@@ -9,6 +9,9 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+  <description>
+  	</description>
+  	<display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>LoginServlet</servlet-class>
   </servlet>
@@ -75,6 +78,20 @@
   	<servlet-name>editemp</servlet-name>
   	<servlet-class>editemp</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>editempf</display-name>
+  	<servlet-name>editempf</servlet-name>
+  	<servlet-class>editempf</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>viewdept</display-name>
+  	<servlet-name>viewdept</servlet-name>
+  	<servlet-class>viewdept</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -115,5 +132,13 @@
   <servlet-mapping>
   	<servlet-name>editemp</servlet-name>
   	<url-pattern>/editemp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>editempf</servlet-name>
+  	<url-pattern>/editempf</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>viewdept</servlet-name>
+  	<url-pattern>/viewdept</url-pattern>
   </servlet-mapping>
 </web-app>
